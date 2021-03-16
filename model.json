@@ -3,22 +3,12 @@
     "guaranteedStopLossOrderMode": "ALLOWED",
     "hedgingEnabled": false,
     "id": "abc",
-    "createdTime": "",
-    "currency": "SGD",
     "createdByUserID": 123,
     "alias": "Primary",
-    "marginRate": "0.02",
-    "lastTransactionID": "30085",
     "balance": "100000",
     "openTradeCount": 4,
-    "openPositionCount": 1,
-    "pendingOrderCount": 0,
     "pl": "-7.00",
     "resettablePL": "-7.6829",
-    "resettablePLTime": "0",
-    "financing": "-2644.5949",
-    "commission": "0.0000",
-    "dividendAdjustment": "0.0000",
     "guaranteedExecutionFees": "0.0000",
     "lastDividendAdjustmentTimestamps": [
       {
@@ -32,28 +22,13 @@
         "instrument": "EUR_USD",
         "long": {
           "units": "0",
-          "pl": "56.2594",
-          "resettablePL": "56.2594",
-          "financing": "-0.2282",
-          "dividendAdjustment": "0",
-          "guaranteedExecutionFees": "0.0000",
           "unrealizedPL": "0.0000"
         },
         "short": {
           "units": "0",
-          "pl": "83.5979",
-          "resettablePL": "83.5979",
-          "financing": "0.3135",
-          "dividendAdjustment": "0",
-          "guaranteedExecutionFees": "0.0000",
           "unrealizedPL": "0.0000"
         },
         "pl": "139.8573",
-        "resettablePL": "139.8573",
-        "financing": "0.0853",
-        "commission": "0.0000",
-        "dividendAdjustment": "0",
-        "guaranteedExecutionFees": "0.0000",
         "unrealizedPL": "0.0000"
       }
     ],
@@ -62,36 +37,19 @@
         "id": "30078",
         "instrument": "CAD_SGD",
         "price": "1.07760",
-        "openTime": "2021-03-12T18:00:16.556680118Z",
-        "initialUnits": "-1289",
-        "initialMarginRequired": "69.4610",
-        "state": "OPEN",
-        "currentUnits": "-1289",
-        "realizedPL": "0.0000",
-        "financing": "-0.0616",
-        "dividendAdjustment": "0.0000",
-        "unrealizedPL": "-0.9925",
-        "marginUsed": "69.4333"
+        "openTime": "2021-03-12T18:00:16.556680118Z"
       },
       {
         "id": "30080",
         "instrument": "CAD_SGD",
-        "price": "1.07710",
-        "openTime": "2021-03-12T19:00:16.485948972Z",
-        "initialUnits": "-1367",
-        "initialMarginRequired": "73.6307",
-        "state": "OPEN",
-        "currentUnits": "-1367",
-        "realizedPL": "0.0000",
-        "financing": "-0.0653",
-        "dividendAdjustment": "0.0000",
         "unrealizedPL": "-1.7361",
         "marginUsed": "73.6348"
       }
     ],
     "unrealizedPL": "-4.8416",
-    "NAV": "18406.8806",
-    "marginUsed": "303.8581"
+    "margin": {
+      "name": "test"
+    }
   },
   "lastTransactionID": "10001"
 }
