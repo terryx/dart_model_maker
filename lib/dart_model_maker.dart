@@ -19,6 +19,23 @@ dynamic generateSimpleModel(Map<String, dynamic> data, String parentKey) {
       definitions += "$key = json['$key'],\n";
       identifiers += "final bool $key; \n";
     }
+
+    if (data[key] is Map) {
+      String capsKey = _capitalise(key);
+      definitions += "$key = $capsKey.fromJson(json['$key']),\n";
+      identifiers += "final $capsKey $key;\n";
+    }
+
+    if (data[key] is List) {
+      if (data[key].isNotEmpty) {
+        String capsKey = _capitalise(key);
+        definitions += """ $key = List<Map<String, dynamic>>.from(json['$key'])
+          .map((dynamic value) => $capsKey.fromJson(value))
+          .toList(),
+      """;
+        identifiers += "final List<$capsKey> $key;\n";
+      }
+    }
   }
 
   definitions = definitions.substring(0, definitions.length - 2);
@@ -45,6 +62,12 @@ dynamic etch(Map<String, dynamic> data, [String parentKey = 'Response']) {
   for (String key in data.keys) {
     if (data[key] is Map) {
       etch(data[key], _capitalise(key));
+    }
+
+    if (data[key] is List) {
+      if (data[key].isNotEmpty) {
+        etch(data[key][0], _capitalise(key));
+      }
     }
   }
 }

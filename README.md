@@ -6,8 +6,4 @@ Model maker attempt to convert json response into dart code without knowing the 
 1. Create a model.json and place it in project level directory.
 2. Run the test and `result.dart` is generated.
 
-### Coming soon
-- Array support
-- Group model into a single model tree
-
 
