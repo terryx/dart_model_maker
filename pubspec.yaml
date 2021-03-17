@@ -1,8 +1,8 @@
 name: dart_model_maker
 description: A new Flutter package project.
 version: 0.0.1
-author:
-homepage:
+author: Terry Yuen
+homepage: https://github.com/terryx/dart_model_maker
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
@@ -11,6 +11,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  recase: ^3.0.1
 
 dev_dependencies:
   flutter_test:

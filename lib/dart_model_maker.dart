@@ -1,34 +1,40 @@
 library dart_model_maker;
 
+import 'package:recase/recase.dart';
+
+final RegExp specialCharRegExp = RegExp(r'-');
+
 dynamic generateSimpleModel(Map<String, dynamic> data, String parentKey) {
   String definitions = '';
   String identifiers = '';
 
-  for (String key in data.keys) {
-    if (data[key] is String) {
+  for (String dkey in data.keys) {
+    final ReCase rc = new ReCase(dkey);
+    final String key = rc.camelCase;
+    final String capsKey = _capitalise(key);
+
+    if (data[dkey] is String) {
       definitions += "$key = json['$key'],\n";
       identifiers += "final String $key; \n";
     }
 
-    if (data[key] is num) {
+    if (data[dkey] is num) {
       definitions += "$key = json['$key'],\n";
       identifiers += "final num $key; \n";
     }
 
-    if (data[key] is bool) {
+    if (data[dkey] is bool) {
       definitions += "$key = json['$key'],\n";
       identifiers += "final bool $key; \n";
     }
 
-    if (data[key] is Map) {
-      String capsKey = _capitalise(key);
+    if (data[dkey] is Map) {
       definitions += "$key = $capsKey.fromJson(json['$key']),\n";
       identifiers += "final $capsKey $key;\n";
     }
 
-    if (data[key] is List) {
-      if (data[key].isNotEmpty) {
-        String capsKey = _capitalise(key);
+    if (data[dkey] is List) {
+      if (data[dkey].isNotEmpty) {
         definitions += """ $key = List<Map<String, dynamic>>.from(json['$key'])
           .map((dynamic value) => $capsKey.fromJson(value))
           .toList(),
@@ -38,7 +44,9 @@ dynamic generateSimpleModel(Map<String, dynamic> data, String parentKey) {
     }
   }
 
-  definitions = definitions.substring(0, definitions.length - 2);
+  if (definitions.isNotEmpty) {
+    definitions = definitions.substring(0, definitions.length - 2);
+  }
 
   final String contents = """
 class $parentKey {
@@ -59,14 +67,18 @@ final List<String> models = [];
 dynamic etch(Map<String, dynamic> data, [String parentKey = 'Response']) {
   models.add(generateSimpleModel(data, parentKey));
 
-  for (String key in data.keys) {
-    if (data[key] is Map) {
-      etch(data[key], _capitalise(key));
+  for (String dkey in data.keys) {
+    final ReCase rc = new ReCase(dkey);
+    final String key = rc.camelCase;
+    final String capsKey = _capitalise(key);
+
+    if (data[dkey] is Map) {
+      etch(data[dkey], capsKey);
     }
 
-    if (data[key] is List) {
-      if (data[key].isNotEmpty) {
-        etch(data[key][0], _capitalise(key));
+    if (data[dkey] is List) {
+      if (data[dkey].isNotEmpty) {
+        etch(data[dkey][0], capsKey);
       }
     }
   }

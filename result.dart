@@ -19,10 +19,11 @@ class Account {
         pl = json['pl'],
         resettablePL = json['resettablePL'],
         guaranteedExecutionFees = json['guaranteedExecutionFees'],
-        lastDividendAdjustmentTimestamps =
-            List<Map<String, dynamic>>.from(json['lastDividendAdjustmentTimestamps'])
-                .map((dynamic value) => LastDividendAdjustmentTimestamps.fromJson(value))
-                .toList(),
+        lastDividendAdjustmentTimestamps = List<Map<String, dynamic>>.from(
+                json['lastDividendAdjustmentTimestamps'])
+            .map((dynamic value) =>
+                LastDividendAdjustmentTimestamps.fromJson(value))
+            .toList(),
         positions = List<Map<String, dynamic>>.from(json['positions'])
             .map((dynamic value) => Positions.fromJson(value))
             .toList(),
