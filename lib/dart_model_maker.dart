@@ -35,10 +35,8 @@ dynamic generateSimpleModel(Map<String, dynamic> data, String parentKey) {
 
     if (data[dkey] is List) {
       if (data[dkey].isNotEmpty) {
-        definitions += """ $key = List<Map<String, dynamic>>.from(json['$key'])
-          .map((dynamic value) => $capsKey.fromJson(value))
-          .toList(),
-      """;
+        definitions +=
+            "$key = List<Map<String, dynamic>>.from(json['$key']).map((dynamic value) => $capsKey.fromJson(value)).toList(),\n";
         identifiers += "final List<$capsKey> $key;\n";
       }
     }
